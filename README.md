@@ -6,6 +6,8 @@ As the name suggest, there are 3 types of diodes built in RGB strip; red (R), gr
 Each of the colors is coded with number from 0 to 255 and represents intesity of light (0 - the lowest intesity, 255 - the highest intesity).
 Combination of these 3 colors could give 16,777,216 combinations of different colors. 
 For more information about colors [visit this page](https://www.rapidtables.com/web/color/RGB_Color.html)
+## Step 1
+Choose buttons on TV remote controller for 
 
 ## Parts
 - RGB led strip 5m
@@ -14,3 +16,4 @@ For more information about colors [visit this page](https://www.rapidtables.com/
 - C945 transistor (3x)
 - 390 Ohm resistor (3x) 
 - IR reciever
+- TV remote controller
