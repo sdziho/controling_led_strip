@@ -31,9 +31,16 @@ The yellow button represents the mode in which the colors change automatically a
 - Arduino Nano
 - C945 transistor (3x)
 - 390 Ohm resistor (3x) 
-- IR reciever
+- IR receiver
 - TV remote controller
 
-## Schematics
-![image](https://user-images.githubusercontent.com/73039566/149667054-caf4c6b0-2384-4b56-a299-007b4fa2853d.png)
 
+## Schematics
+Breadbord schematics:
+![image](https://user-images.githubusercontent.com/73039566/149667054-caf4c6b0-2384-4b56-a299-007b4fa2853d.png)
+  
+  
+Proteus schematics:  
+  
+
+![scheme2](https://user-images.githubusercontent.com/73039566/149668641-3c8757fa-79f1-42c6-bc29-27f4a06d83e7.JPG)
