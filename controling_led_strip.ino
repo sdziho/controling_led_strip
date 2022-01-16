@@ -6,7 +6,7 @@ IRrecv irrecv(RECV_PIN);
 decode_results results;
 
 int red=255,blue=0,green=0;
-int value,ispis=0;
+int value,led_output=0;
 
 void setup() {
   Serial.begin(9600);
@@ -19,8 +19,18 @@ void setup() {
   Serial.println("Enabled IRin");
   
 }
-//12V ne gori svijetlo
-//0V upaljeno svijetlo
+//12V light turn off
+//0V light turn on
+//------------- CODE INFO ----------
+// 0x37 or 0x837 is code for red button on my TV remote controller
+// 0x36 or 0x836 is code for green button on my TV remote controller
+// 0x34 or 0x834 is code for blue button on my TV remote controller
+
+// 0x23 or 0x823 is code for UP ARROW on my TV remote controller
+// 0xE or 0x80E is code for DOWN ARROW on my TV remote controller
+// 0x16 or 0x816 is code for ZERO (0) on my TV remote controller
+
+// 0x32  or 0x832 is code for yellow button on my TV remote controller which turns on automaticlly changing color mode
 
 void loop() {
   if (irrecv.decode(&results)) {
@@ -30,25 +40,25 @@ void loop() {
       red=255;
       blue=0;
       green=0;
-      ispis=0; //fading
+      led_output=0; //fading
     }
-    if(results.value==0x37 ||  results.value==0x837)ispis=1; //R
-    if(results.value==0x36 ||  results.value==0x836)ispis=2; //G
-    if(results.value==0x34 ||  results.value==0x834)ispis=3; //B
+    if(results.value==0x37 ||  results.value==0x837)led_output=1; //R
+    if(results.value==0x36 ||  results.value==0x836)led_output=2; //G
+    if(results.value==0x34 ||  results.value==0x834)led_output=3; //B
 
     value=0;
     
      
-     if(ispis==1){//crvena mjenja se
-        Serial.println("crvena");
+     if(led_output==1){//red changing
+        Serial.println("RED");
         if(results.value==0x23 ||  results.value==0x823) red+=2;
         if(results.value==0x80E ||  results.value==0xE) red-=2;
         if(results.value==0x16 ||  results.value==0x816) red=0;
         if(red<0)red=255;
         if(red>255)red=0;
      }
-     if(ispis==2){//zelena mjenja se
-        Serial.println("zelena");
+     if(led_output==2){//green changing
+        Serial.println("GREEN");
         if(results.value==0x23 ||  results.value==0x823) green+=2;
         if(results.value==0x80E ||  results.value==0xE) green-=2;
         if(results.value==0x16 ||  results.value==0x816) green=0;
@@ -56,8 +66,8 @@ void loop() {
         if(green>255)green=0;
         Serial.println(green);
      }
-     if(ispis==3){//plava mjenja se
-        Serial.println("plava");
+     if(led_output==3){//blue changing
+        Serial.println("BLUE");
         if(results.value==0x23 ||  results.value==0x823) blue+=2;
         if(results.value==0x80E ||  results.value==0xE) blue-=2;
         if(results.value==0x16 ||  results.value==0x816) blue=0;
@@ -70,7 +80,7 @@ void loop() {
      irrecv.resume(); // Receive the next value
     
    }
-   if(ispis==0){
+   if(led_output==0){
        if(red==255&&green==0&&blue!=255)blue++;
        if(blue==255&&green==0&&red!=0)red--;
        if(red==0&&blue==255&&green!=255)green++;
